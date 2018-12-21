@@ -12,7 +12,7 @@ resource "aws_security_group" "ambersg" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["194.105.145.0}/24"]
+    cidr_blocks = ["194.105.145.0/24"]
   }
 
   ingress {
