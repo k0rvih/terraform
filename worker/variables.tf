@@ -3,7 +3,7 @@ variable "main_ip" {
 }
 
 variable "ami-win" {
-  default = "ami-050202fb72f001b47"
+  default = "ami-0080e4c5bc078760e"
 }
 
 variable "admin_password" {
