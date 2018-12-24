@@ -1,5 +1,5 @@
 resource "aws_security_group" "ambersg" {
-  name = "provis"
+  name = "amber"
 
   ingress {
     from_port   = 80
