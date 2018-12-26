@@ -38,8 +38,8 @@ resource "aws_security_group" "ambersg" {
 
   egress {
     from_port   = 0
-    to_port     = 0
-    protocol    = "tcp"
+    to_port     = 65535
+    protocol    = "All"
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
