@@ -6,10 +6,11 @@ resource "aws_instance" "amber-web" {
   key_name        = "axs"
   user_data = <<EOF
   <powershell>
-  $url = "https://download.octopusdeploy.com/octopus/Octopus.Tentacle.3.24.0-x64.msi"
+  $url = "${var.octo_url}"
   $output = "C:\install"
   $wc1 = New-Object SYSTEM.Net.WebClient
-  #$awsInstanceId = $wc1.Downloadstring('http://169.254.169.254/latest/meta-data/instance-id')
+  $octoapi = "${var.octo_api}"
+  $octoserver = "${var.octo_server}"
   $ipAddress = $wc1.Downloadstring('http://169.254.169.254/latest/meta-data/public-hostname')
   New-Item $output -ItemType Directory
   cd $output
@@ -23,7 +24,7 @@ resource "aws_instance" "amber-web" {
   .\Tentacle.exe configure --instance "Tentacle" --home "C:\Octopus" --app "C:\Octopus\Applications" --port "10933" --console
   .\Tentacle.exe configure --instance "Tentacle" --trust "142B8DC3922A94F8407EBAF54749263FC8BB2C4C" --console
   netsh advfirewall firewall add rule "name=Octopus Deploy Tentacle" dir=in action=allow protocol=TCP localport=10933
-  .\Tentacle.exe register-with --instance "Tentacle" --publicHostName=$ipAddress --server "http://octo.axsdevops.io:81" --apiKey="API-JNF9DYMC7BUVD4TOSEZSQN1XFO" --role "web" --environment "Dev" --comms-style TentaclePassive --console
+  .\Tentacle.exe register-with --instance "Tentacle" --publicHostName=$ipAddress --server $octoserver --apiKey=$octoapi --role "web" --environment "Dev" --comms-style TentaclePassive --console
   .\Tentacle.exe service --instance "Tentacle" --install --start --console
   </powershell>
   EOF

@@ -1,9 +1,4 @@
-variable "main_ip" {
-}
-
-variable "ami_linux" {
-}
-
-variable "aws_profile" {
-    default = ""
-}
+variable "ami_linux" {}
+variable "octo_api" {}
+variable "octo_url" {}
+variable "octo_server" {}
