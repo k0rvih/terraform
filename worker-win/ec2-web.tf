@@ -11,7 +11,6 @@ resource "aws_instance" "amber-web" {
   $wc1 = New-Object SYSTEM.Net.WebClient
   #$awsInstanceId = $wc1.Downloadstring('http://169.254.169.254/latest/meta-data/instance-id')
   $ipAddress = $wc1.Downloadstring('http://169.254.169.254/latest/meta-data/public-hostname')
-  $ipAddress
   New-Item $output -ItemType Directory
   cd $output
   Invoke-WebRequest -Uri $url -OutFile $output\octo.msi

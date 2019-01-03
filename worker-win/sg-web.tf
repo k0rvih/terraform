@@ -16,15 +16,15 @@ resource "aws_security_group" "ambersg" {
   }
 
   ingress {
-    from_port   = 22
-    to_port     = 22
+    from_port   = 3389
+    to_port     = 3389
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    from_port   = 21
-    to_port     = 21
+    from_port   = 10933
+    to_port     = 10933
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
