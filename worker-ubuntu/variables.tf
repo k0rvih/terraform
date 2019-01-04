@@ -5,5 +5,5 @@ variable "octo_server" {}
 variable "octorole" {}
 variable "octoenv" {}
 variable "terraform_linuxurl" {}
-variable "trversion" {}
+variable "trpackage" {}
 
