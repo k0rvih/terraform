@@ -6,10 +6,10 @@ resource "aws_instance" "amber-web" {
   key_name        = "axs"
   user_data = <<EOF
   #!/bin/bash
-  URL="${var.terraform_linuxurl}"
+  url="${var.terraform_linuxurl}"
   trpackage="${var.trpackage}"
   sudo apt install unzip
-  wget $URL
+  wget $url
   unzip $trpackage
   sudo mv terraform /usr/local/bin/
   EOF
