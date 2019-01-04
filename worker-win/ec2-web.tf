@@ -17,7 +17,7 @@ resource "aws_instance" "amber-web" {
   New-Item $output -ItemType Directory
   cd $output
   Invoke-WebRequest -Uri $url -OutFile $output\octo.msi
-  Start-Process octo.msi -Wait -ArgumentList "/i","/quiet"
+  Start-Process "octo.msi" -Wait -ArgumentList "/quiet"
   cd "C:\Program Files\Octopus Deploy\Tentacle"
   .\Tentacle.exe create-instance --instance "Tentacle" --config "C:\Octopus\Tentacle.config" --console
   .\Tentacle.exe new-certificate --instance "Tentacle" --if-blank --console
