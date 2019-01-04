@@ -8,7 +8,7 @@ resource "aws_instance" "amber-web" {
   #!/bin/bash
   URL="${var.terraform_linuxurl}"
   trversion="${var.trversion}"
-  trversion=${trversion}_linux_amd64.zip
+  trversion=$${trversion}_linux_amd64.zip
   sudo apt install unzip
   wget $URL
   unzip $trversion
