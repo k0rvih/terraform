@@ -8,11 +8,10 @@ resource "aws_instance" "amber-web" {
   #!/bin/bash
   URL="${var.terraform_linuxurl}"
   trversion="${var.trversion}"
-  sudo apt update 
-  sudo apt upgrade -y
+  trversion=${trversion}_linux_amd64.zip
   sudo apt install unzip
   wget $URL
-  unzip "${var.trversion}"_linux_amd64.zip
+  unzip $trversion
   sudo mv terraform /usr/local/bin/
   EOF
   
