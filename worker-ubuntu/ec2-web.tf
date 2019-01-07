@@ -6,8 +6,8 @@ resource "aws_instance" "amber-web" {
   key_name        = "axs"
   user_data = <<EOF
   #!/bin/bash
-  url="${var.terraform_linuxurl}"
-  trpackage="${var.trpackage}"
+  url="https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip"
+  trpackage="terraform_0.11.11_linux_amd64.zip"
   sudo apt install unzip
   wget $url
   unzip $trpackage
