@@ -5,13 +5,15 @@ resource "aws_instance" "amber-web" {
   security_groups = ["${aws_security_group.ambersg.name}"]
   key_name        = "axs"
   user_data = <<EOF
+  <script>
   #!/bin/bash
   url="${var.terraform_linuxurl}"
   trpackage="${var.trpackage}"
   sudo apt install unzip
-  wget $url
-  unzip $trpackage
+  wget $$url
+  unzip $$trpackage
   sudo mv terraform /usr/local/bin/
+  </script>
   EOF
   
   tags {
