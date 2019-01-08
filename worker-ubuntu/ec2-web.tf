@@ -14,7 +14,9 @@ resource "aws_instance" "amber-web" {
               unzip $trpackage
               mv terraform /usr/local/bin/
               EOF
-  
-  tags {
+              
+    tags {
     Name = "Octopus Worker Ubuntu"
   }
+
+}
