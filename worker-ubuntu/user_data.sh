@@ -4,6 +4,6 @@ su -c 'curl https://download.mono-project.com/repo/centos7-stable.repo | tee /et
 yum install mono-devel -y
 yum update -y
 yum install unzip
-wget $url
-unzip $trpackage
+wget ${url}
+unzip ${trpackage}
 mv terraform /usr/local/bin/
