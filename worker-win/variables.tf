@@ -4,4 +4,3 @@ variable "octo_url" {}
 variable "octo_server" {}
 variable "octorole" {}
 variable "octoenv" {}
-variable "output" {}
