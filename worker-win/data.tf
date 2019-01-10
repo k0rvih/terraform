@@ -7,6 +7,6 @@ data "template_file" "worker_win" {
         octoserver = "${var.octo_server}"
         role = "${var.octorole}"
         env = "${var.octoenv}"
-        hostName = "${hostname}"
+        hostName = "${var.hostname}"
     }
 }
