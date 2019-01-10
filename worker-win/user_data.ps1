@@ -1,11 +1,11 @@
 <powershell>
 $publicHostName = (Invoke-WebRequest -Uri "http://169.254.169.254/latest/meta-data/public-hostname").content
-$output = "C:\install"
-New-Item $output -ItemType Directory
-cd $output
-Invoke-WebRequest -Uri $url -OutFile $output\octo.msi
+$dir = "C:\install"
+New-Item $dir -ItemType Directory
+Set-Location $dir
+Invoke-WebRequest -Uri $url -OutFile $dir\octo.msi
 Start-Process "octo.msi" -Wait -ArgumentList "/quiet"
-cd "C:\Program Files\Octopus Deploy\Tentacle"
+Set-Location "C:\Program Files\Octopus Deploy\Tentacle"
 .\Tentacle.exe create-instance --instance "Tentacle" --config "C:\Octopus\Tentacle.config" --console
 .\Tentacle.exe new-certificate --instance "Tentacle" --if-blank --console
 .\Tentacle.exe configure --instance "Tentacle" --reset-trust --console
