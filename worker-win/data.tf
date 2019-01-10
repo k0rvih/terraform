@@ -1,5 +1,5 @@
 data "template_file" "worker_win" {
-    template = "${file("user_data.sh")}"
+    template = "${file("user_data.ps1")}"
 
     vars {
         url = "${var.octo_url}"
