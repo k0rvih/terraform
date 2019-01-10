@@ -12,6 +12,6 @@ Set-Location "C:\Program Files\Octopus Deploy\Tentacle"
 .\Tentacle.exe configure --instance "Tentacle" --home "C:\Octopus" --app "C:\Octopus\Applications" --port "10933" --console
 .\Tentacle.exe configure --instance "Tentacle" --trust "142B8DC3922A94F8407EBAF54749263FC8BB2C4C" --console
 netsh advfirewall firewall add rule "name=Octopus Deploy Tentacle" dir=in action=allow protocol=TCP localport=10933
-.\Tentacle.exe register-with --instance "Tentacle" --publicHostName=$publicHostName --server ${octoserver} --apiKey=${octoapi} --role ${role} --environment ${env} --comms-style TentaclePassive --console
+.\Tentacle.exe register-with --instance "Tentacle" --publicHostName=$publicHostName --name=${hostName} --server ${octoserver} --apiKey=${octoapi} --role ${role} --environment ${env} --comms-style TentaclePassive --console
 .\Tentacle.exe service --instance "Tentacle" --install --start --console
 </powershell>
