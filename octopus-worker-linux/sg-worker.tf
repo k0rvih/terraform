@@ -7,7 +7,7 @@ resource "aws_security_group" "octo_worker_linux" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["${var.access_allowed}"]
-    description = "EPAM, Ukraine, Belarus"
+    description = "Ukraine"
   }
   ingress {
     from_port   = 10933
