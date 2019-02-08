@@ -10,11 +10,10 @@ resource "aws_security_group" "octo_worker_linux" {
     description = "Ukraine"
   }
   ingress {
-    from_port   = 10933
-    to_port     = 10933
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-    description = "Octopus"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["52.50.36.248/32"]
   }
   egress {
     from_port   = 0

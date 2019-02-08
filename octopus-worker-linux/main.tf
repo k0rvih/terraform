@@ -1,11 +1,12 @@
 terraform {
   backend "s3" {
     profile = "amber"
+    bucket = "ambertr"
+    key    = "linux-worker/terraform.tfstate"
     region = "us-east-1"
-    bucket = "ambertf"
-    key = "linux_worker/octopus-worker-linux"
   }
 }
+
 
 provider "aws" {
   region = "${var.aws_region}"
