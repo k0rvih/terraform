@@ -13,8 +13,13 @@ resource "aws_instance" "octopus_worker_linux" {
   }
 
   provisioner "file" {
-    source      = "/user_data/add_ssh_worker.py"
+    source      = "./user_data/add_ssh_worker.py"
     destination = "/tmp/add_ssh_worker.py"
+  }
+  connection {
+    user = "ec2-user"
+    type = "ssh"
+    private_key = "${file("C:\\aws\\axs_amber.pem")}"
   }
 }
 
@@ -22,11 +27,9 @@ data "template_file" "worker" {
   template = "${file("./user_data/user_data.sh")}"
 
   vars {
-    serverUrl="http://octo.axsdevops.io:81"
-    apiKey="API-JNF9DYMC7BUVD4TOSEZSQN1XFO"
-    environmentName="testssh"
+    serverUrl=""
+    apiKey="API-value"
     accountName="amber-Linux-Worker"
-    machineName="linuxworker"
-    serverTaskId="321"
+    machineName="linux-worker"
   }
 }
