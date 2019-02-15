@@ -22,22 +22,16 @@ fingerprint = ':'.join(a+b for a,b in zip(fp_plain[::2], fp_plain[1::2]))
 # Get account Id
 request_url = octopus_url_api + "/accounts/all"
 accounts = requests.get(url=request_url, headers=octopus_headers).json()
-accid = ''
-for acc in accounts:
-    if acc["Name"] == accountName:
-        accid = acc['Id']
+accid = list(filter(lambda acc: acc['Name'] == accountName, accounts))
 
 # Get workerpool Id
 request_url = octopus_url_api + "/WorkerPools/all"
 workerpools = requests.get(url=request_url, headers=octopus_headers).json()
-workerpoolid = ''
-for wpool in workerpools:
-    if wpool["Name"] == workerpoolname:
-        workerpoolid = wpool["Id"]
+workerpoolid = list(filter(lambda wpool: wpool['Name'] == workerpoolname, workerpools))
 
 #Create a Json
 dotNetCorePlatform = "linux-x64"
-workerJson = {"Endpoint": {"CommunicationStyle": "Ssh", "AccountId": accid, "Host": publicIP, "Port": 22, "Fingerprint": fingerprint, "DotNetCorePlatform": dotNetCorePlatform}, "Name": machineName, "WorkerPoolIds": [workerpoolid]}
+workerJson = {"Endpoint": {"CommunicationStyle": "Ssh", "AccountId": accid[0]['Id'], "Host": publicIP, "Port": 22, "Fingerprint": fingerprint, "DotNetCorePlatform": dotNetCorePlatform}, "Name": machineName, "WorkerPoolIds": [workerpoolid[0]['Id']]}
 
 #Put SSH instance to Octopus
 rurl = octopus_url_api + "/workers"
