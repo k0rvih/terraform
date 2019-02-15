@@ -35,10 +35,10 @@ for wpool in workerpools:
     if wpool["Name"] == workerpoolname:
         workerpoolid = wpool["Id"]
 
+#Create a Json
 dotNetCorePlatform = "linux-x64"
 workerJson = {"Endpoint": {"CommunicationStyle": "Ssh", "AccountId": accid, "Host": publicIP, "Port": 22, "Fingerprint": fingerprint, "DotNetCorePlatform": dotNetCorePlatform}, "Name": machineName, "WorkerPoolIds": [workerpoolid]}
-print(workerJson)
 
+#Put SSH instance to Octopus
 rurl = octopus_url_api + "/workers"
 mrq = requests.post(url=rurl, json=workerJson, headers=octopus_headers)
-print(mrq)

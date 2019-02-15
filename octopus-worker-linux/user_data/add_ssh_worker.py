@@ -26,9 +26,16 @@ for acc in accounts:
     if acc["Name"] == accountName:
         accid = acc['Id']
 
+# Get workerpool Id
+request_url = octopus_url_api + "/WorkerPools/all"
+workerpools = requests.get(url=request_url, headers=octopus_headers).json()
+workerpoolid = ''
+for wpool in workerpools:
+    if wpool["Name"] == workerpoolname:
+        workerpoolid = wpool["Id"]
+
 dotNetCorePlatform = "linux-x64"
-workerJson = {"Endpoint": {"CommunicationStyle": "Ssh", "AccountId": accid, "Host": publicIP, "Port": 22, "Fingerprint": fingerprint, "DotNetCorePlatform": dotNetCorePlatform}, "Name": machineName, "WorkerPoolIds": ["WorkerPools-21"]}
+workerJson = {"Endpoint": {"CommunicationStyle": "Ssh", "AccountId": accid, "Host": publicIP, "Port": 22, "Fingerprint": fingerprint, "DotNetCorePlatform": dotNetCorePlatform}, "Name": machineName, "WorkerPoolIds": [workerpoolid]}
 
 rurl = octopus_url_api + "/workers"
 mrq = requests.post(url=rurl, json=workerJson, headers=octopus_headers)
-print(mrq)
