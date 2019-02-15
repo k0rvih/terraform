@@ -11,20 +11,10 @@ resource "aws_instance" "octopus_worker_linux" {
   tags {
     Name = "octopus-worker-linux-01"
   }
-
-  provisioner "file" {
-    source      = "./user_data/add_ssh_worker.py"
-    destination = "/tmp/add_ssh_worker.py"
-  }
-  connection {
-    user = "ec2-user"
-    type = "ssh"
-    private_key = "${file("C:\\aws\\axs_amber.pem")}"
-  }
 }
 
 data "template_file" "worker" {
-  template = "${file("./user_data/user_data.sh")}"
+  template = "${file("./user_data/user_data.py")}"
 
   vars {
     serverUrl=""
